@@ -18,7 +18,7 @@
 		CEF4B1B42758A0B90027290F /* FilmCardViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4B1B32758A0B90027290F /* FilmCardViewContoller.swift */; };
 		CEF4B1B62758B3C90027290F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4B1B52758B3C90027290F /* NetworkError.swift */; };
 		CEF4B1B82758B4C60027290F /* CommentNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4B1B72758B4C60027290F /* CommentNetworkService.swift */; };
-		CEF4B1BA2758E8B50027290F /* StackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4B1B92758E8B50027290F /* StackViewExtension.swift */; };
+		CEF4B210275B753F0027290F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF4B20F275B753F0027290F /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +35,7 @@
 		CEF4B1B32758A0B90027290F /* FilmCardViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmCardViewContoller.swift; sourceTree = "<group>"; };
 		CEF4B1B52758B3C90027290F /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		CEF4B1B72758B4C60027290F /* CommentNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentNetworkService.swift; sourceTree = "<group>"; };
-		CEF4B1B92758E8B50027290F /* StackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewExtension.swift; sourceTree = "<group>"; };
+		CEF4B20F275B753F0027290F /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF4B182275781680027290F /* Assets.xcassets */,
+				CEF4B20F275B753F0027290F /* Colors.xcassets */,
 				CEF4B184275781680027290F /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
@@ -109,7 +110,6 @@
 		CEF4B1902757953A0027290F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CEF4B1B92758E8B50027290F /* StackViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -238,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF4B210275B753F0027290F /* Colors.xcassets in Resources */,
 				CEF4B186275781680027290F /* LaunchScreen.storyboard in Resources */,
 				CEF4B183275781680027290F /* Assets.xcassets in Resources */,
 			);
@@ -250,7 +251,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEF4B1BA2758E8B50027290F /* StackViewExtension.swift in Sources */,
 				CEF4B19B2757D3900027290F /* Film.swift in Sources */,
 				CEF4B1AC275889FF0027290F /* DataFetcherService.swift in Sources */,
 				CEF4B1A7275855160027290F /* FilmsViewController.swift in Sources */,

@@ -34,7 +34,7 @@ class FilmsViewController: UIViewController {
             self.sortingYears = Array(self.sectionData.keys).sorted(by: <)
             self.tableView.reloadData()
         }
- 
+        
         self.setNavigation()
         self.setupView()
         self.setupDelegate()
@@ -47,7 +47,6 @@ class FilmsViewController: UIViewController {
     }
     
 //MARK: - Setup Delegate, DataSource
-
     private func setupDelegate() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -61,7 +60,6 @@ class FilmsViewController: UIViewController {
 }
 
 //MARK: - UITableView DataSource
-
 extension FilmsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -107,7 +105,6 @@ extension FilmsViewController: UITableViewDataSource {
     }
 }
 //MARK: - UITableView Delegate
-
 extension FilmsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -118,11 +115,9 @@ extension FilmsViewController: UITableViewDelegate {
         let destination = FilmCardViewContoller()
         self.navigationController?.pushViewController(destination, animated: true)
     }
-
 }
     
 //MARK: - Set Constraints
-
 extension FilmsViewController {
     
     private func setConstraints() {
