@@ -25,27 +25,3 @@ class FilmNetworkService {
     }
 }
 
-//protocol Networking {
-//    func request(urlStr: String,
-//                 completion: @escaping (Data?, Error?) -> Void)
-//}
-//
-//class NetworkService: Networking {
-//    
-//    //построение запроса данных по url
-//    func request(urlStr: String,
-//                 completion: @escaping (Data?, Error?) -> Void) {
-//        guard let url = URL(string: urlStr) else { return }
-//        let request = URLRequest(url: url)
-//        let task = createDataTask(from: request, completion: completion)
-//        task.resume()
-//}
-//    func createDataTask(from request: URLRequest,
-//                        completion: @escaping (Data?, Error?)-> Void) -> URLSessionDataTask {
-//        return URLSession.shared.dataTask(with: request) { (data, response, error) in
-//            DispatchQueue.main.async {
-//                completion(data, error)
-//            }
-//        }
-//    }
-//}

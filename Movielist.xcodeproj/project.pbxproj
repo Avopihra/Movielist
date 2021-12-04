@@ -14,12 +14,12 @@
 		CEF4B1A7275855160027290F /* FilmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4B1A6275855160027290F /* FilmsViewController.swift */; };
 		CEF4B1AA27585E390027290F /* FilmsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4B1A927585E390027290F /* FilmsTableViewCell.swift */; };
 		CEF4B1AC275889FF0027290F /* DataFetcherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4B1AB275889FF0027290F /* DataFetcherService.swift */; };
-		CEF4B1AE27588AB00027290F /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4B1AD27588AB00027290F /* DataFetcher.swift */; };
 		CEF4B1B027588B0B0027290F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4B1AF27588B0B0027290F /* NetworkService.swift */; };
 		CEF4B1B42758A0B90027290F /* FilmCardViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4B1B32758A0B90027290F /* FilmCardViewContoller.swift */; };
 		CEF4B1B62758B3C90027290F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4B1B52758B3C90027290F /* NetworkError.swift */; };
 		CEF4B1B82758B4C60027290F /* CommentNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4B1B72758B4C60027290F /* CommentNetworkService.swift */; };
 		CEF4B1BA2758E8B50027290F /* StackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4B1B92758E8B50027290F /* StackViewExtension.swift */; };
+		CEF4B20C275A55300027290F /* YearTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4B20B275A55300027290F /* YearTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,12 +32,12 @@
 		CEF4B1A6275855160027290F /* FilmsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsViewController.swift; sourceTree = "<group>"; };
 		CEF4B1A927585E390027290F /* FilmsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsTableViewCell.swift; sourceTree = "<group>"; };
 		CEF4B1AB275889FF0027290F /* DataFetcherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcherService.swift; sourceTree = "<group>"; };
-		CEF4B1AD27588AB00027290F /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
 		CEF4B1AF27588B0B0027290F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		CEF4B1B32758A0B90027290F /* FilmCardViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmCardViewContoller.swift; sourceTree = "<group>"; };
 		CEF4B1B52758B3C90027290F /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		CEF4B1B72758B4C60027290F /* CommentNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentNetworkService.swift; sourceTree = "<group>"; };
 		CEF4B1B92758E8B50027290F /* StackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewExtension.swift; sourceTree = "<group>"; };
+		CEF4B20B275A55300027290F /* YearTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,10 +142,9 @@
 			isa = PBXGroup;
 			children = (
 				CEF4B1AB275889FF0027290F /* DataFetcherService.swift */,
-				CEF4B1AD27588AB00027290F /* DataFetcher.swift */,
 				CEF4B1AF27588B0B0027290F /* NetworkService.swift */,
-				CEF4B1B52758B3C90027290F /* NetworkError.swift */,
 				CEF4B1B72758B4C60027290F /* CommentNetworkService.swift */,
+				CEF4B1B52758B3C90027290F /* NetworkError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -180,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF4B1A927585E390027290F /* FilmsTableViewCell.swift */,
+				CEF4B20B275A55300027290F /* YearTableView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -259,11 +259,11 @@
 				CEF4B1A7275855160027290F /* FilmsViewController.swift in Sources */,
 				CEF4B1B027588B0B0027290F /* NetworkService.swift in Sources */,
 				CEF4B1B82758B4C60027290F /* CommentNetworkService.swift in Sources */,
+				CEF4B20C275A55300027290F /* YearTableView.swift in Sources */,
 				CEF4B17A275781660027290F /* AppDelegate.swift in Sources */,
 				CEF4B1B42758A0B90027290F /* FilmCardViewContoller.swift in Sources */,
 				CEF4B1B62758B3C90027290F /* NetworkError.swift in Sources */,
 				CEF4B1AA27585E390027290F /* FilmsTableViewCell.swift in Sources */,
-				CEF4B1AE27588AB00027290F /* DataFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,16 +23,3 @@ struct GetFilmResponse {
     }
 }
 
-//class DataFetcherService {
-//
-//    var networkDataFetcher: DataFetcher
-//
-//    init(dataFetcher: DataFetcher = NetworkDataFetcher()) {
-//        self.networkDataFetcher = dataFetcher
-//    }
-//
-//    func fetchFilms(completion: @escaping (FilmModel?) -> Void) {
-//        let urlString = "https://s3-eu-west-1.amazonaws.com/sequeniatesttask/films.json"
-//        networkDataFetcher.fetchGenericJSONData(urlString: urlString, response: completion)
-//    }
-//}

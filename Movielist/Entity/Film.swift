@@ -16,12 +16,11 @@ struct Film: Decodable {
     var id: Int?
     var localized_name: String?
     var name: String?
-    var year: Int?
-    var rating: Double?
+    var year: Int
+    var rating: Double
     var description: String?
     var genres = [String]()
     var image_url: String?
-    
     init?(dict: [String: AnyObject]) {
 
 //        guard let id = dict["id"] as? Int,
@@ -47,8 +46,8 @@ struct Film: Decodable {
         self.id = id
         self.localized_name = dict["localized_name"] as? String
         self.name = dict["name"] as? String
-        self.year = dict["year"] as? Int
-        self.rating = dict["rating"] as? Double
+        self.year = dict["year"] as? Int ?? 0
+        self.rating = dict["rating"] as? Double ?? 0.0
         self.description = dict["description"] as? String
         self.genres = dict["genres"] as? [String] ?? []
         self.image_url = dict["image_url"] as? String
