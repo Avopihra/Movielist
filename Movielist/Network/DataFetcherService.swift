@@ -8,6 +8,7 @@
 import Foundation
 
 struct GetFilmResponse {
+    
     typealias JSON = [String: AnyObject]
     var films = [Film]()
     

@@ -95,24 +95,12 @@ class FilmCardViewContoller: UIViewController, FilmCardProtocol, UIScrollViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setScrollView()
-        self.setConstraints()
-        self.configureFilmCard()
+        configureNavigationBar()
+        setScrollView()
+        setConstraints()
+        configureFilmCard()
         self.view.backgroundColor = .white
     }
-    
-//MARK: - Navigation title
-//    override var title: String? {
-//        get {
-//            return self.navigationItem.title
-//        }
-//        set {
-//            self.navigationController?.navigationBar.titleTextAttributes = [
-//                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .medium)
-//            ]
-//            self.navigationItem.title = newValue
-//        }
-//    }
     
 //MARK: - Setup ScrollView
 
@@ -138,12 +126,16 @@ class FilmCardViewContoller: UIViewController, FilmCardProtocol, UIScrollViewDel
         }
     }
     
-//MARK: - Configure Card View
-    func configureFilmCard() {
+    //MARK: - Configure NavigationBar
+    func configureNavigationBar() {
         if let navigationTitlte = self.film?.localized_name {
             self.navigationItem.title = "\(navigationTitlte)"
-            
         }
+        
+    }
+    
+    //MARK: - Configure Card View
+    func configureFilmCard() {
         self.nameLabel.text = film?.name
         if let year = self.film?.year {
             self.yearLabel.text = "Год: \(year)"
@@ -167,7 +159,6 @@ class FilmCardViewContoller: UIViewController, FilmCardProtocol, UIScrollViewDel
             self.noRatingImageView.isHidden = false
         }
     }
-    
 }
 
 //MARK: - Set Constraints
@@ -183,40 +174,44 @@ extension FilmCardViewContoller {
         self.scrollView.addSubview(self.ratingLabel)
         self.scrollView.addSubview(self.noRatingImageView)
         self.scrollView.addSubview(self.movieDescription)
-
-        self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        self.scrollView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
-        self.contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor).isActive = true
-        self.contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor).isActive = true
-        self.contentView.heightAnchor.constraint(equalTo: self.scrollView.heightAnchor).isActive = true
-        self.contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor).isActive = true
-        
-        self.moviePosterImage.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
-        self.moviePosterImage.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10).isActive = true
-        self.moviePosterImage.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        self.moviePosterImage.heightAnchor.constraint(equalToConstant: 170).isActive = true
-        
-        self.nameLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 12).isActive = true
-        self.nameLabel.leadingAnchor.constraint(equalTo: self.moviePosterImage.trailingAnchor, constant: 12).isActive = true
-        self.nameLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10).isActive = true
+        NSLayoutConstraint.activate([
+            self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            
+            self.contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
+            self.contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor),
+            self.contentView.heightAnchor.constraint(equalTo: self.scrollView.heightAnchor),
+            self.contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
+            
+            self.moviePosterImage.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
+            self.moviePosterImage.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
+            self.moviePosterImage.widthAnchor.constraint(equalToConstant: 150),
+            self.moviePosterImage.heightAnchor.constraint(equalToConstant: 170),
+            
+            self.nameLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 12),
+            self.nameLabel.leadingAnchor.constraint(equalTo: self.moviePosterImage.trailingAnchor, constant: 12),
+            self.nameLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
 
-        self.yearLabel.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor, constant:15).isActive = true
-        self.yearLabel.leadingAnchor.constraint(equalTo: self.moviePosterImage.trailingAnchor, constant: 12).isActive = true
+            self.yearLabel.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor, constant:15),
+            self.yearLabel.leadingAnchor.constraint(equalTo: self.moviePosterImage.trailingAnchor, constant: 12),
 
-        self.ratingLabel.topAnchor.constraint(equalTo: self.yearLabel.bottomAnchor, constant: 15).isActive = true
-        self.ratingLabel.leadingAnchor.constraint(equalTo: self.moviePosterImage.trailingAnchor, constant: 12).isActive = true
+            self.ratingLabel.topAnchor.constraint(equalTo: self.yearLabel.bottomAnchor, constant: 15),
+            self.ratingLabel.leadingAnchor.constraint(equalTo: self.moviePosterImage.trailingAnchor, constant: 12),
+            
+            self.noRatingImageView.topAnchor.constraint(equalTo: self.yearLabel.bottomAnchor, constant: 20),
+            self.noRatingImageView.leadingAnchor.constraint(equalTo: self.moviePosterImage.trailingAnchor, constant: 15),
+            self.noRatingImageView.widthAnchor.constraint(equalToConstant: 30),
+            self.noRatingImageView.heightAnchor.constraint(equalToConstant: 30),
+
+            self.movieDescription.topAnchor.constraint(equalTo: self.moviePosterImage.bottomAnchor, constant: 30),
+            self.movieDescription.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
+            self.movieDescription.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
+        ])
         
-        self.noRatingImageView.topAnchor.constraint(equalTo: self.yearLabel.bottomAnchor, constant: 20).isActive = true
-        self.noRatingImageView.leadingAnchor.constraint(equalTo: self.moviePosterImage.trailingAnchor, constant: 15).isActive = true
-        self.noRatingImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        self.noRatingImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
-
-        self.movieDescription.topAnchor.constraint(equalTo: self.moviePosterImage.bottomAnchor, constant: 30).isActive = true
-        self.movieDescription.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10).isActive = true
-        self.movieDescription.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10).isActive = true
+        
     }
 }
 

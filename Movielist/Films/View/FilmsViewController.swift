@@ -28,17 +28,22 @@ class FilmsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        self.getResponse()
+        self.setNavigation()
+        self.setupView()
+        self.setupDelegate()
+        self.setConstraints()
+    }
+    
+//MARK: - Get Film Response
+    private func getResponse() {
         FilmNetworkService.getFilms { (response) in
             self.films = response.films
             self.sectionData = Dictionary(grouping: self.films, by: { $0.year })
             self.sortingYears = Array(self.sectionData.keys).sorted(by: <)
             self.tableView.reloadData()
         }
-        
-        self.setNavigation()
-        self.setupView()
-        self.setupDelegate()
-        self.setConstraints()
     }
         
 //MARK: - Setup View
@@ -51,11 +56,22 @@ class FilmsViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
     }
-//MARK: - Set Navigation Controller
+    
+//MARK: - Navigation Controller Settings
     private func setNavigation() {
         self.navigationItem.title = "Фильмы"
-        let navigationViewController = UINavigationController(rootViewController: FilmsViewController())
-        navigationViewController.modalPresentationStyle = .pageSheet
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(
+            title: .none,
+            style: .plain,
+            target: nil,
+            action: nil
+        )
+        let backButtonImage = UIImage(systemName: "arrow.backward")
+        self.navigationController?.navigationBar.backIndicatorImage = backButtonImage
+        self.navigationController?.navigationBar.layer.borderColor = CGColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
+        self.navigationController?.navigationBar.layer.borderWidth = 0.5
+        self.navigationController?.navigationBar.backgroundColor = .white
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backButtonImage
     }
 }
 
@@ -73,7 +89,20 @@ extension FilmsViewController: UITableViewDataSource {
          }
          return 0
     }
-
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let key = self.sortingYears[indexPath.section]
+        if let values = sectionData[key]?.sorted(by: {$0.rating > $1.rating}) {
+            let film = values[indexPath.row]
+            let filmsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "filmsTableViewCell", for: indexPath) as! FilmsTableViewCell
+            filmsTableViewCell.configureFilmCell(with: film)
+            return filmsTableViewCell
+         }
+        
+        return UITableViewCell()
+    }
+    
+//MARK: - Header Settings
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView.init(frame: CGRect.init(x: 16, y: 0, width: (tableView.frame.width - 32), height: 35))
         let label = UILabel()
@@ -91,19 +120,8 @@ extension FilmsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let key = self.sortingYears[indexPath.section]
-        if let values = sectionData[key]?.sorted(by: {$0.rating > $1.rating}) {
-            let film = values[indexPath.row]
-            let filmsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "filmsTableViewCell", for: indexPath) as! FilmsTableViewCell
-            filmsTableViewCell.configureFilmCell(with: film)
-            return filmsTableViewCell
-         }
-        
-        return UITableViewCell()
-    }
 }
+
 //MARK: - UITableView Delegate
 extension FilmsViewController: UITableViewDelegate {
     

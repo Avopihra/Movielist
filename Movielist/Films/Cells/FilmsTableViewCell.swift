@@ -14,7 +14,6 @@ class FilmsTableViewCell: UITableViewCell {
         containerView.backgroundColor = UIColor(named: "movielistBlue")
         containerView.layer.borderWidth = 1
         containerView.layer.borderColor = UIColor.black.cgColor
-        containerView.translatesAutoresizingMaskIntoConstraints = false
         return containerView
     }()
     
@@ -22,7 +21,6 @@ class FilmsTableViewCell: UITableViewCell {
         let label = UILabel()
         label.lineBreakMode = .byWordWrapping
         label.font = UIFont.systemFont(ofSize: 19)
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         return label
     }()
@@ -32,7 +30,6 @@ class FilmsTableViewCell: UITableViewCell {
         label.lineBreakMode = .byWordWrapping
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = UIColor(named: "movielistGray")
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         return label
     }()
@@ -40,7 +37,6 @@ class FilmsTableViewCell: UITableViewCell {
     private let ratingLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.textAlignment = .right
         return label
@@ -59,9 +55,10 @@ class FilmsTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         self.selectionStyle = .none
-        self.setNeedsLayout()
+        [containerView, localizedNameLabel, nameLabel, ratingLabel].forEach {
+                $0.translatesAutoresizingMaskIntoConstraints = false
+            }
     }
     
     required init?(coder: NSCoder) {
