@@ -113,7 +113,12 @@ extension FilmsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let destination = FilmCardViewContoller()
-        self.navigationController?.pushViewController(destination, animated: true)
+        let key = self.sortingYears[indexPath.section]
+        
+        if let values = sectionData[key] {
+            destination.setFilm(with: values[indexPath.row])
+            self.navigationController?.pushViewController(destination, animated: true)
+         }
     }
 }
     
