@@ -10,7 +10,7 @@ import UIKit
 
 class FilmsViewController: UIViewController {
 
-    //MARK: - Table View
+//MARK: - TableView
     private var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .white
@@ -20,75 +20,74 @@ class FilmsViewController: UIViewController {
         return tableView
     }()
     
+    //MARK: - ImageView NoTable
+    private let noTableImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "person.3")
+        imageView.frame = CGRect(x: UIScreen.main.bounds.size.width / 2 - 50,
+                                 y: UIScreen.main.bounds.size.height / 2 - 50,
+                                 width: 100, height: 50)
+        imageView.tintColor = .lightGray
+        return imageView
+    }()
+    
+//MARK: - UIRefreshControl
+    let refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh(sender: )), for: .valueChanged)
+        return refreshControl
+    }()
+    
     var films = [Film]()
     var sectionData = [Int: [Film]]()
     var sortingYears = [Int]()
-    let refreshControl = UIRefreshControl()
-    private var data = MainData()
-
-
+    
 //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setupRefreshControl()
-        self.getResponse()
+        self.tableView.refreshControl = refreshControl
         self.setNavigation()
         self.setupView()
+        self.setupNoTableImage()
         self.setupDelegate()
         self.setConstraints()
+        self.getResponse(completion: {})
     }
     
-    
-//MARK: - Setup Refresh Control
-
-    private func setupRefreshControl() {
-        if self.refreshControl.isRefreshing {
+//MARK: - Refresh UIRefreshControl
+    @objc func refresh(sender: UIRefreshControl) {
+        self.getResponse {
             DispatchQueue.main.async {
-                self.refreshControl.endRefreshing()
+                sender.endRefreshing()
             }
         }
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Идет обновление...")
-        self.refreshControl.addTarget(self, action: #selector(self.onRefreshControlChanged), for: .valueChanged)
-        self.tableView.refreshControl = self.refreshControl
-
     }
     
-//MARK: -
-    @objc
-    func onRefreshControlChanged() {
-        DispatchQueue.main.async {
-            self.refreshControl.isHidden = false
-            self.refreshControl.beginRefreshing()
-        }
-        self.getResponse()
+//MARK: - Setup noTableImage
+    private func setupNoTableImage() {
+        let image = self.noTableImage
+        image.isUserInteractionEnabled = true
+        self.view.addSubview(image)
     }
-    
+   
 //MARK: - Get Film Response
-    private func getResponse() {
-        
-        FilmNetworkService.getFilms { (response, error) in
-
-            self.films = []
+    private func getResponse(completion: @escaping() -> ()) {
+        FilmsNetworkService.getFilms { (response, error) in
             guard let response = response else {
+                completion()
+                self.noTableImage.isHidden = false
+                self.tableView.contentOffset = CGPoint.zero
                 self.showAlert(title: "Что-то пошло не так ...", message: "Проверьте интернет-соединение")
-                
-                DispatchQueue.main.async(execute: {
-                     self.tableView.reloadData()
-                     self.refreshControl.endRefreshing()
-                     self.refreshControl.isHidden = true
-                })
                 return
             }
             
+            self.noTableImage.isHidden = true
             self.films = response.films
             self.sectionData = Dictionary(grouping: self.films, by: { $0.year })
             self.sortingYears = Array(self.sectionData.keys).sorted(by: <)
-            
-            DispatchQueue.main.async(execute: {
-                 self.tableView.reloadData()
-                 self.refreshControl.endRefreshing()
-            })
+            self.tableView.reloadData()
+            completion()
         }
     }
         
@@ -151,7 +150,7 @@ extension FilmsViewController: UITableViewDataSource {
     
 //MARK: - Header Settings
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView.init(frame: CGRect.init(x: 16, y: 0, width: (tableView.frame.width - 36), height: 35))
+        let headerView = UIView.init(frame: CGRect.init(x: 16, y: 0, width: (UIScreen.main.bounds.width - 32), height: 35))
         let label = UILabel()
         headerView.addSubview(label)
         label.layer.borderWidth = 1
@@ -191,11 +190,15 @@ extension FilmsViewController: UITableViewDelegate {
 extension FilmsViewController {
     
     private func setConstraints() {
+        let topPadding = UIApplication.shared.windows.first{$0.isKeyWindow }?.safeAreaInsets.top ?? 0
+        let navigationBarHeight = self.navigationController?.navigationBar.frame.height ?? 0
+        let tableViewTopAnchor = topPadding + navigationBarHeight + 10
         NSLayoutConstraint.activate([
             self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
             self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-            self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100),
+            self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: tableViewTopAnchor),
             self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0)
+            
         ])
     }
 }

@@ -111,8 +111,8 @@ extension FilmsTableViewCell {
     containerView.addSubview(self.nameLabel)
 
     self.containerView.topAnchor.constraint(equalTo: marginGuide.topAnchor, constant: -6).isActive = true
-    self.containerView.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor).isActive = true
-    self.containerView.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
+    self.containerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
+    self.containerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
     self.containerView.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
 
     self.ratingLabel.topAnchor.constraint(equalTo: self.localizedNameLabel.topAnchor).isActive = true

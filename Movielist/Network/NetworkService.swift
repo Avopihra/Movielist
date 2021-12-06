@@ -1,5 +1,5 @@
 //
-//  NetworkService.swift
+//  CommentNetworkService.swift
 //  Movielist
 //
 //  Created by Viktoriya on 02.12.2021.
@@ -7,22 +7,30 @@
 
 import Foundation
 
-class FilmNetworkService {
+class NetworkService {
     private init() {}
     
-    static func getFilms(completion: @escaping(GetFilmResponse?, Error?) -> ()) {
-        guard let url = URL(string: "https://s3-eu-west-1.amazonaws.com/sequeniatesttask/films.json") else {
-            return
-        }
-        NetworkService.shared.getData(url: url) { (json, error) in
-            do {
-                let response = try GetFilmResponse(json: json)
-                completion(response, nil)
-            } catch {
-                completion(nil, error)
-                print(error)
+    static let shared = NetworkService()
+    
+    public func getData(url: URL, completion: @escaping (Any?, Error?) -> ()) {
+        let session = URLSession.shared
+        session.dataTask(with: url) { data, response, error in
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
+                return
             }
-        }
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                DispatchQueue.main.async {
+                    completion(json, nil)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
+            }
+        }.resume()
     }
 }
-
