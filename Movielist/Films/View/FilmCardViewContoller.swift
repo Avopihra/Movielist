@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 
 protocol FilmCardProtocol {
@@ -141,7 +142,21 @@ class FilmCardViewContoller: UIViewController, FilmCardProtocol, UIScrollViewDel
             self.yearLabel.text = "Год: \(year)"
         }
         self.movieDescription.text = film?.description
-        //            self.moviePosterImage.image = film.image_url
+        
+        if let imageURL = self.film?.image_url {
+            self.moviePosterImage.kf.indicatorType = .activity
+            self.moviePosterImage.kf.setImage(with: URL(string: imageURL)) { (result) in
+                switch result {
+                case .failure(_):
+                    self.moviePosterImage.image = UIImage(named: "noImage")
+                
+                default:
+                    self.moviePosterImage.backgroundColor = UIColor(named: "movielistBlue")
+                }
+            }
+        } else {
+            self.moviePosterImage.image = UIImage(named: "noImage")
+        }
         
         if let rating = film?.rating,
            rating != 0 {
@@ -188,8 +203,8 @@ extension FilmCardViewContoller {
             
             self.moviePosterImage.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
             self.moviePosterImage.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
-            self.moviePosterImage.widthAnchor.constraint(equalToConstant: 150),
-            self.moviePosterImage.heightAnchor.constraint(equalToConstant: 170),
+            self.moviePosterImage.widthAnchor.constraint(equalToConstant: 140),
+            self.moviePosterImage.heightAnchor.constraint(equalToConstant: 210),
             
             self.nameLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 12),
             self.nameLabel.leadingAnchor.constraint(equalTo: self.moviePosterImage.trailingAnchor, constant: 12),
@@ -206,7 +221,7 @@ extension FilmCardViewContoller {
             self.noRatingImageView.widthAnchor.constraint(equalToConstant: 30),
             self.noRatingImageView.heightAnchor.constraint(equalToConstant: 30),
 
-            self.movieDescription.topAnchor.constraint(equalTo: self.moviePosterImage.bottomAnchor, constant: 30),
+            self.movieDescription.topAnchor.constraint(equalTo: self.moviePosterImage.bottomAnchor, constant: 20),
             self.movieDescription.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
             self.movieDescription.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
         ])
