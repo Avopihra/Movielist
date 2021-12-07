@@ -20,3 +20,6 @@ iOS-приложение Movielist создано для отображения 
 	- Год выхода
 	- Рейтинг
 	- Описание фильма
+	
+	КОД СОДЕРЖИТ localizible strings. Убедитесь, что язык системы - Русский. 
+	Чтобы переключить язык, перейдите на симуляторе в Settings -> General -> Language & Region -> iPhine Language -> Russian.
