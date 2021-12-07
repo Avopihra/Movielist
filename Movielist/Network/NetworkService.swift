@@ -12,12 +12,12 @@ class NetworkService {
     
     static let shared = NetworkService()
     
-    public func getData(url: URL, completion: @escaping (Any?, Error?) -> ()) {
+    public func getData(url: URL, completion: @escaping (Any?, NetworkError?) -> ()) {
         let session = URLSession.shared
         session.dataTask(with: url) { data, response, error in
             guard let data = data else {
                 DispatchQueue.main.async {
-                    completion(nil, error)
+                    completion(nil, NetworkError.networkError)
                 }
                 return
             }
@@ -28,7 +28,7 @@ class NetworkService {
                 }
             } catch {
                 DispatchQueue.main.async {
-                    completion(nil, error)
+                    completion(nil, NetworkError.networkError)
                 }
             }
         }.resume()

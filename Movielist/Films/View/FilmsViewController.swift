@@ -78,7 +78,7 @@ class FilmsViewController: UIViewController {
                 completion()
                 self.noTableImage.isHidden = false
                 self.tableView.contentOffset = CGPoint.zero
-                self.showAlert(title: "Что-то пошло не так ...", message: "Проверьте интернет-соединение")
+                self.showAlert(title: NSLocalizedString("somethingWentWrong", comment: ""), message: NSLocalizedString("checkInternetConnection", comment: ""))
                 return
             }
             
@@ -105,7 +105,7 @@ class FilmsViewController: UIViewController {
     
 //MARK: - Navigation Controller Settings
     private func setNavigation() {
-        self.navigationItem.title = "Фильмы"
+        self.navigationItem.title = NSLocalizedString("Films", comment: "")
         self.navigationItem.backBarButtonItem = UIBarButtonItem(
             title: .none,
             style: .plain,

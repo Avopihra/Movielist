@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 import Kingfisher
 
-
 protocol FilmCardProtocol {
     func setFilm(with film: Film)
 }
@@ -21,7 +20,6 @@ class FilmCardViewContoller: UIViewController, FilmCardProtocol, UIScrollViewDel
         label.font = UIFont.systemFont(ofSize: 16)
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.sizeToFit()
         label.textColor = UIColor(named: "movielistGray")
         return label
@@ -30,14 +28,12 @@ class FilmCardViewContoller: UIViewController, FilmCardProtocol, UIScrollViewDel
     private let yearLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     private var ratingLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -45,7 +41,6 @@ class FilmCardViewContoller: UIViewController, FilmCardProtocol, UIScrollViewDel
         let label = UILabel()
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.sizeToFit()
         return label
     }()
@@ -53,7 +48,6 @@ class FilmCardViewContoller: UIViewController, FilmCardProtocol, UIScrollViewDel
     private let moviePosterImage: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor =  UIColor(named: "movielistBlue")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.borderWidth = 1
         imageView.layer.borderColor = UIColor.black.cgColor
         return imageView
@@ -64,7 +58,6 @@ class FilmCardViewContoller: UIViewController, FilmCardProtocol, UIScrollViewDel
         imageView.image = UIImage(systemName: "star.slash")
         imageView.layer.borderWidth = 1
         imageView.layer.borderColor = UIColor.black.cgColor
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.tintColor = UIColor(named: "movielistGray")
         return imageView
     }()
@@ -75,7 +68,6 @@ class FilmCardViewContoller: UIViewController, FilmCardProtocol, UIScrollViewDel
     private var attributedRatingWord = NSAttributedString()
     
 //MARK: - set ScrollView
-
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         return scrollView
@@ -83,7 +75,6 @@ class FilmCardViewContoller: UIViewController, FilmCardProtocol, UIScrollViewDel
     
     private let contentView: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -96,21 +87,21 @@ class FilmCardViewContoller: UIViewController, FilmCardProtocol, UIScrollViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureNavigationBar()
-        setScrollView()
-        setConstraints()
-        configureFilmCard()
-        self.view.backgroundColor = .white
+        [nameLabel, yearLabel, ratingLabel, movieDescription, moviePosterImage, noRatingImageView, contentView ].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        self.configureNavigationBar()
+        self.setScrollView()
+        self.setConstraints()
+        self.configureFilmCard()
     }
     
 //MARK: - Setup ScrollView
-
     private func setScrollView() {
         self.scrollView.frame = self.view.bounds
     }
     
 //MARK: - Setup RatingLabel Color
-
     private func setRatingLabelColor(ratingValue: RatingValue) {
         switch ratingValue {
         case .high:
@@ -132,14 +123,14 @@ class FilmCardViewContoller: UIViewController, FilmCardProtocol, UIScrollViewDel
         if let navigationTitlte = self.film?.localized_name {
             self.navigationItem.title = "\(navigationTitlte)"
         }
-        
     }
     
     //MARK: - Configure Card View
     func configureFilmCard() {
+        self.view.backgroundColor = .white
         self.nameLabel.text = film?.name
         if let year = self.film?.year {
-            self.yearLabel.text = "Год: \(year)"
+            self.yearLabel.text = "\(NSLocalizedString("Year: ", comment: ""))\(year)"
         }
         self.movieDescription.text = film?.description
         
@@ -163,9 +154,9 @@ class FilmCardViewContoller: UIViewController, FilmCardProtocol, UIScrollViewDel
             self.ratingLabel.text = "\(rating)"
             self.noRatingImageView.isHidden = true
             self.setRatingLabelColor(ratingValue: film?.ratingValue ?? .low)
-            self.attributedRatingWord = NSMutableAttributedString(string: "Рейтинг: ",
+            self.attributedRatingWord = NSMutableAttributedString(string: NSLocalizedString("Rating: ", comment: ""),
                                                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
-            let attributedRatingValue = NSAttributedString(string: self.ratingLabel.text ?? "без рейтинга")
+            let attributedRatingValue = NSAttributedString(string: self.ratingLabel.text ?? "")
             self.attributedRatingLabel.append(attributedRatingWord)
             self.attributedRatingLabel.append(attributedRatingValue)
             self.ratingLabel.attributedText = self.attributedRatingLabel
@@ -225,8 +216,6 @@ extension FilmCardViewContoller {
             self.movieDescription.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
             self.movieDescription.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
         ])
-        
-        
     }
 }
 

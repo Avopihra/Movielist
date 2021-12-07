@@ -13,7 +13,7 @@ struct GetFilmResponse {
     var films = [Film]()
     
     init(json: Any) throws {
-        guard let array = json as? JSON else { throw NetworkError.faleInternetError }
+        guard let array = json as? JSON else { throw NetworkError.networkError }
         guard let filmsData = array["films"] as? [AnyObject] else { return }
         for dictionary in filmsData {
             guard let film = Film(dict: dictionary as? [String : AnyObject] ?? [:]) else { continue }

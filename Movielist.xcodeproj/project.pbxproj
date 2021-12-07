@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		84596B6CC58B003AAC5703D8 /* Pods_Movielist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEAE3D35311E121B81D9FF81 /* Pods_Movielist.framework */; };
-		CECC83F4275DBF2400A14510 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC83F3275DBF2400A14510 /* Alert.swift */; };
+		CE0A7F78275EFC2600F82B15 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE0A7F76275EFC2600F82B15 /* Localizable.strings */; };
+		CECC83F4275DBF2400A14510 /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC83F3275DBF2400A14510 /* AlertExtension.swift */; };
 		CEF4B17A275781660027290F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF4B179275781660027290F /* AppDelegate.swift */; };
 		CEF4B183275781680027290F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF4B182275781680027290F /* Assets.xcassets */; };
 		CEF4B186275781680027290F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF4B184275781680027290F /* LaunchScreen.storyboard */; };
@@ -42,11 +43,13 @@
 
 /* Begin PBXFileReference section */
 		3DDAC778836C0686101CBC5A /* Pods-Movielist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movielist.release.xcconfig"; path = "Target Support Files/Pods-Movielist/Pods-Movielist.release.xcconfig"; sourceTree = "<group>"; };
-		CECC83F3275DBF2400A14510 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		CE0A7F71275EF90F00F82B15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CE0A7F74275EFBAA00F82B15 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		CE0A7F77275EFC2600F82B15 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CECC83F3275DBF2400A14510 /* AlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
 		CEF4B176275781660027290F /* Movielist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movielist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF4B179275781660027290F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEF4B182275781680027290F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CEF4B185275781680027290F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEF4B187275781680027290F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEF4B19A2757D3900027290F /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
 		CEF4B1A6275855160027290F /* FilmsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +93,22 @@
 			path = FilmsNetworkService;
 			sourceTree = "<group>";
 		};
+		CE4C15F0275ED9280034601B /* FilmCard */ = {
+			isa = PBXGroup;
+			children = (
+				CE4C15F3275ED98C0034601B /* View */,
+			);
+			path = FilmCard;
+			sourceTree = "<group>";
+		};
+		CE4C15F3275ED98C0034601B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CEF4B1B32758A0B90027290F /* FilmCardViewContoller.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CEF4B16D275781660027290F = {
 			isa = PBXGroup;
 			children = (
@@ -113,22 +132,15 @@
 			children = (
 				CEF4B1952757973D0027290F /* Applications */,
 				CEF4B19D2757D9630027290F /* Films */,
+				CE4C15F0275ED9280034601B /* FilmCard */,
 				CEF4B1912757960D0027290F /* Model */,
 				CEF4B1902757953A0027290F /* Extensions */,
 				CE4C15EC275E230C0034601B /* FilmsNetworkService */,
 				CEF4B194275797070027290F /* Network */,
 				CEF4B18E275794E00027290F /* Resources */,
-				CEF4B18D275794D90027290F /* Services */,
 				CEF4B18F275794F90027290F /* Supporting Files */,
 			);
 			path = Movielist;
-			sourceTree = "<group>";
-		};
-		CEF4B18D275794D90027290F /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		CEF4B18E275794E00027290F /* Resources */ = {
@@ -137,6 +149,7 @@
 				CEF4B182275781680027290F /* Assets.xcassets */,
 				CEF4B20F275B753F0027290F /* Colors.xcassets */,
 				CEF4B184275781680027290F /* LaunchScreen.storyboard */,
+				CE0A7F76275EFC2600F82B15 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -152,7 +165,7 @@
 		CEF4B1902757953A0027290F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CECC83F3275DBF2400A14510 /* Alert.swift */,
+				CECC83F3275DBF2400A14510 /* AlertExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -187,7 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF4B1A6275855160027290F /* FilmsViewController.swift */,
-				CEF4B1B32758A0B90027290F /* FilmCardViewContoller.swift */,
+				CEF4B1A827585DFA0027290F /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -196,17 +209,16 @@
 			isa = PBXGroup;
 			children = (
 				CEF4B19C2757D9520027290F /* View */,
-				CEF4B1A827585DFA0027290F /* Cells */,
 			);
 			path = Films;
 			sourceTree = "<group>";
 		};
-		CEF4B1A827585DFA0027290F /* Cells */ = {
+		CEF4B1A827585DFA0027290F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				CEF4B1A927585E390027290F /* FilmsTableViewCell.swift */,
 			);
-			path = Cells;
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		CEF4B211275CA5C80027290F /* Pods */ = {
@@ -271,6 +283,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = CEF4B16D275781660027290F;
 			productRefGroup = CEF4B177275781660027290F /* Products */;
@@ -311,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEF4B210275B753F0027290F /* Colors.xcassets in Resources */,
+				CE0A7F78275EFC2600F82B15 /* Localizable.strings in Resources */,
 				CEF4B186275781680027290F /* LaunchScreen.storyboard in Resources */,
 				CEF4B183275781680027290F /* Assets.xcassets in Resources */,
 			);
@@ -370,7 +384,7 @@
 				CEF4B1A7275855160027290F /* FilmsViewController.swift in Sources */,
 				CEF4B1B027588B0B0027290F /* FilmsNetworkService.swift in Sources */,
 				CEF4B1B82758B4C60027290F /* NetworkService.swift in Sources */,
-				CECC83F4275DBF2400A14510 /* Alert.swift in Sources */,
+				CECC83F4275DBF2400A14510 /* AlertExtension.swift in Sources */,
 				CEF4B17A275781660027290F /* AppDelegate.swift in Sources */,
 				CEF4B1B42758A0B90027290F /* FilmCardViewContoller.swift in Sources */,
 				CEF4B1B62758B3C90027290F /* NetworkError.swift in Sources */,
@@ -381,10 +395,19 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		CE0A7F76275EFC2600F82B15 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE0A7F77275EFC2600F82B15 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		CEF4B184275781680027290F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CEF4B185275781680027290F /* Base */,
+				CE0A7F71275EF90F00F82B15 /* Base */,
+				CE0A7F74275EFBAA00F82B15 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -396,6 +419,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -457,6 +481,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -8,6 +8,5 @@
 import Foundation
 
 enum NetworkError: Error {
-    case faleInternetError
-    case noInternetConnection
+    case networkError
 }

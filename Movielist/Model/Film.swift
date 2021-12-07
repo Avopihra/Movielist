@@ -44,6 +44,7 @@ enum RatingValue: String {
     case low
 }
 
+//MARK: - Extension
 extension Film {
     var ratingValue: RatingValue? {
         if  rating != 0 && rating >= 7 {

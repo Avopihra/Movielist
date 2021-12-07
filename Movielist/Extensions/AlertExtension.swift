@@ -14,7 +14,7 @@ extension UIViewController {
                  handler: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
        
-        let okAction = UIAlertAction(title: "OK",
+        let okAction = UIAlertAction(title: NSLocalizedString("okAction", comment: ""),
                                style: .default) {  (_) in
             handler?()
         }

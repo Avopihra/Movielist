@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  Movielist
+
+  Created by Viktoriya on 07.12.2021.
+  
+*/
+
+// MARK: - Alert
+"somethingWentWrong" = "Что-то пошло не так ...";
+"checkInternetConnection" = "Проверьте интернет-соединение";
+"okAction" = "OK";
+
+// MARK: - Films
+"Films" = "Фильмы";
+"Year: " = "Год: ";
+"Rating: " = "Рейтинг: ";
